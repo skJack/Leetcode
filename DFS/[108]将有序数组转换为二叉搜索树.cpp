@@ -28,6 +28,7 @@ Discussion | Solution
  *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
  * };
  */
+ //思路：中序遍历的想法，找数组的中间作为根节点，左子树为中间的左半部分，右子树为中间的右半部分
 class Solution {
 public:
     TreeNode* generator(vector<int>&nums,int begin,int end)
