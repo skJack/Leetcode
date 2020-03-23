@@ -49,4 +49,17 @@ public:
         }
         return arr[len/2];
     }
+    //方法二：快慢指针法。O(n/2)+0
+    //搞两个指针，一个快一个慢。快指针一次运动两个节点，慢指针一次运动一个节点
+    //最后当快指针运动到null或者快指针的next为空时，慢指针就是结果
+    ListNode* middleNode(ListNode* head) {
+        ListNode *slow = head;
+        ListNode *quick = head;
+        while (quick!=NULL&&quick->next!=NULL)
+        {
+            quick = quick->next->next;
+            slow = slow->next;
+        }
+        return slow;
+    }
 };
