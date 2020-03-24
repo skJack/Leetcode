@@ -60,4 +60,27 @@ public:
         cout<<NULL;
        return helper(root,5050,-5050);
     }
+    vector<int>squence;
+    //方法二：中序遍历，得到序列应该满足每个元素都比下一个元素小
+    //原因：要求每一个子树都满足左<根<右，相当于每个子树都要满足这个性质
+    void dfs(TreeNode* root)
+    {
+        if(root==NULL)
+            return;
+        dfs(root->left);
+        squence.push_back(root->val);
+        dfs(root->right);
+    }
+    bool isValidBST(TreeNode* root) {
+        if(root==NULL)
+            return true;
+       dfs(root);
+       for(int i=0;i<squence.size()-1;i++)
+       {
+           if(squence[i]>=squence[i+1])
+                return false;
+            
+       }
+       return true;
+    }
 };
