@@ -90,3 +90,21 @@ public:
 
 
 };
+
+class Solution {
+    public void rotate(int[][] matrix) {
+        int N = matrix.length;
+        // 选择 四分之一区域 
+        for(int i = 0; i < N / 2; i++){
+            for(int j = 0; j < (N + 1) / 2; j++){ // 四个坐标 轮流转换。
+                int temp = matrix[i][j];
+                matrix[i][j] = matrix[N - j - 1][i];
+                matrix[N - j - 1][i] = matrix[N - i - 1][N - j - 1];
+                matrix[N - i - 1][N- j - 1] = matrix[j][N - i - 1];
+                matrix[j][N - i - 1] = temp;
+            }
+        }
+    }
+}
+
+
