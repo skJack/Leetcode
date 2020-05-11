@@ -25,3 +25,15 @@ Companies
 n 是 32 位有符号整数，其数值范围是 [−231, 231 − 1] 。
 
 */
+
+// @lc code=start
+class Solution {
+public:
+    double myPow(double x, int n) {
+        if(x == 0)  return 0;
+        double ans;
+        if(x > 0 || ((x < 0) && (n % 2 == 0)))    ans = exp(n*log(abs(x)));
+        else ans = -exp(n*log(-x));
+        return ans;
+    }
+};
