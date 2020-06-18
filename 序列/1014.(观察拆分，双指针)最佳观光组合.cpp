@@ -66,6 +66,7 @@ public:
         return dp[len-1];
     }
     //观察式子，可以发现可以看成A[i]+i最大和A[j]-j最大，正好遍历j的时候可以维护前面的最大值
+   //这种题要先优化一下表达式，看能不能保存之前的答案
     int maxScoreSightseeingPair(vector<int>& A) {
         int len = A.size();
         int mx = A[0];
