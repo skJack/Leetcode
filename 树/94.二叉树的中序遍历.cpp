@@ -46,4 +46,46 @@ public:
         dfs(ans,root);
         return ans;
     }
+   //中序遍历先左再中再右
+    vector<int> inorderTraversal(TreeNode* root) {
+        stack<TreeNode*>s;
+        vector<int>ans;
+        TreeNode* curr = root;
+        while (curr!=NULL||!s.empty())
+        {
+            while (curr!=NULL)
+            {
+                s.push(curr);
+                curr = curr->left;
+            }//先把左支路都放进去
+            curr = s.top();
+            s.pop();
+            ans.push_back(curr->val);
+            //s.push(root->right);注意这么写就错了
+            curr = curr->right;
+        }
+        return ans;
+    }
+    //先序遍历
+    vector<int> preorderTraversal(TreeNode* root) {
+        stack<TreeNode*>s;
+        vector<int>ans;
+        TreeNode* curr = root;
+        while(curr!=NULL||!s.empty())
+        {
+            while(curr!=NULL)//内层循环相当于可以处理两个节点
+            {
+                //先直接使用根节点
+                ans.push_back(curr->val);
+                //右节点入栈
+                s.push(curr->right);
+                curr = curr->left;
+            }
+            curr = s.top();
+            s.pop();
+
+        }
+
+    }
+
 };
