@@ -60,43 +60,39 @@ Companies
  */
 class Solution {
 public:
-    TreeNode * node1 = new TreeNode(-1);
-    TreeNode * node2 = new TreeNode(-1);
-    TreeNode * pre = new TreeNode(-1);
+    TreeNode* node1 = NULL;
+    TreeNode* node2 = NULL;
+    TreeNode* pre = NULL;
     void dfs(TreeNode* root)
     {
         if(root==NULL)
             return;
         dfs(root->left);
         int value = root->val;
-        if(pre->val!=-1&&value<pre->val)
+        if(pre != NULL && value < (pre->val))
             {
-                if(node1->val==-1)
+                if(node1 == NULL)
                 {
-                    node1 = pre;
+                    node1 = pre;//如果此时第一个节点为空，就记录前一个
                     node2 = root;
-                    cout<<" sdsd"<<endl;
                 }
                 else
                 {
-                    node2 = pre;
+                    node2 = root;//更新第二个节点
                 }
                 
             }
         pre = root;
         dfs(root->right);
     }
-    void recoverTree(TreeNode* root) {
+    void recoverTree1(TreeNode* root) {
         if(root==NULL)
             return;
-        
         dfs(root);
-        cout<<node1->val<<" "<<node1->val;
-        TreeNode * tmp = node1;
-        node1 = node2;
-        node2 = tmp;
+        cout<<node1->val<<" "<<node2->val;
+        int tmp = node1->val;
+        node1->val = node2->val;
+        node2->val = tmp;
         return;
-
-        
     }
 };
