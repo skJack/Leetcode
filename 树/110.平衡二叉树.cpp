@@ -53,4 +53,25 @@ public:
         else
             return isBalanced(root->left)&&isBalanced(root->right);
     }
+    //方法二：自底向上，自动计算高度，避免冗余.很巧妙的把最大深度和剪枝结合在一起
+    bool isBalanced(TreeNode* root) {
+        return box(root) !=-1;
+    }
+    int box(TreeNode* root)//判断当前节点左右子树的最大高度，如果左右子树高度差大于1，直接返回-1
+    {
+        if(root==NULL)
+            return 0;
+        int left = box(root->left);
+        if(left==-1)
+            return -1;//剪枝
+        int right = box(root->right);
+        if(right==-1)
+            return -1;
+        if(abs(left-right)<2)
+            return max(left,right)+1;
+        else
+            return -1;
+        
+        
+    }
 };
