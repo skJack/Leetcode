@@ -53,4 +53,27 @@ public:
             //相当于把所有根都遍历一遍
         return helper(root,sum)+pathSum(root->left, sum)+pathSum(root->right, sum);
     }
+      
+    //方法二：前缀和的使用。学会使用哈希表存储树的前缀和。
+    //注意树的前缀和-sum表示以该节点的子节点为根的路径和为sum
+    void dfs(TreeNode* root, const int& sum, int cur)
+    {
+        if (root == NULL)
+            return;
+        ++m[cur];
+        int tar = cur + root -> val - sum;
+        if (m.count(tar))
+            ans += m[tar];
+        dfs(root -> left, sum, cur + root -> val);
+        dfs(root -> right, sum, cur + root -> val);
+        --m[cur];//回溯
+    }
+
+    int pathSum(TreeNode* root, int sum) {
+        if (root == NULL)
+            return 0;
+        ans = 0;
+        dfs(root, sum, 0);
+        return ans;
+    }
 };
